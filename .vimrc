@@ -13,6 +13,8 @@ set incsearch
 set nowrap
 set laststatus=2
 set encoding=utf-8
+
+
 set termguicolors
 filetype plugin indent on
 " Install vim-plug if not found
@@ -54,11 +56,12 @@ endif
 
 colorscheme codeblocks-dark
 let g:airline_theme='gotham256'
-autocmd FileType cpp inoremap <buffer> <F9> <ESC>:w <CR> :!c++ -o %:r %<CR> <ESC> :FloatermNew time ./%< && ~/ins.sh<CR>
-autocmd FileType cpp nnoremap <buffer> <F9> <ESC>:w <CR> :!c++ -o %:r %<CR> <ESC> :FloatermNew time ./%< && ~/ins.sh<CR>
+"complete
+autocmd FileType cpp inoremap <buffer> <F9> <ESC>:w <CR> :!c++ -o %:p:r %:p && time %:p:r <CR>i
+autocmd FileType cpp nnoremap <buffer> <F9> <ESC>:w <CR> :!c++ -o %:p:r %:p && time %:p:r <CR>
 
-autocmd FileType python inoremap <buffer> <F5> <ESC>:w <bar> :FloatermNew time  % && ~/ins.sh<CR>
-autocmd FileType python nnoremap <buffer> <F5> <ESC>:w <bar> :FloatermNew time  % && ~/ins.sh<CR>
+autocmd FileType python inoremap <buffer> <F5> <ESC>:w<CR> :!time pypy3 % <CR>
+autocmd FileType python nnoremap <buffer> <F5> <ESC>:w<CR> :!time pypy3 % <CR>
 
 inoremap <A-Up> <C-w>ki
 nnoremap <A-Up> <C-w>k<ESC>
