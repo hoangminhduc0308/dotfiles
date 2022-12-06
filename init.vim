@@ -1,4 +1,3 @@
-set termguicolors
 syntax on
 set number
 set splitright
@@ -39,8 +38,6 @@ Plug 'luochen1990/rainbow'
 Plug 'tribela/vim-transparent'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/DoxygenToolkit.vim'
-Plug 'cohama/lexima.vim'
-Plug 'noscript/codeblocks-dark.vim'
 call plug#end()
 
 let g:rainbow_active = 1
@@ -66,9 +63,9 @@ disable = {},  -- list of language that will be disabled
 }
 EOF
 
+colorscheme OceanicNext
+let g:airline_theme="oceanicnext"
 " .vimrc
-colorscheme codeblocks-dark
-let g:airline_theme = "gotham256"
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
 let col = col('.') - 1
@@ -82,13 +79,14 @@ let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <c-space> coc#refresh()
-"complete
-autocmd FileType cpp inoremap <buffer> <F9> <ESC>:w <CR> :FloatermNew c++  -o %:p:r %:p && time %:p:r && pypy3 ~/ins.py<CR>i
-autocmd FileType cpp nnoremap <buffer> <F9> <ESC>:w <CR> :FloatermNew c++  -o %:p:r %:p && time %:p:r && pypy3 ~/ins.py<CR>
 
-autocmd FileType python inoremap <buffer> <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && pypy3 ~/ins.py<CR>
-autocmd FileType python nnoremap <buffer> <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && pypy3 ~/ins.py<CR>
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+"complete
+inoremap <F9> <ESC>:w <CR> :FloatermNew c++  -o %:p:r %:p && time %:p:r && bash ~/ins.sh<CR>
+nnoremap <F9> <ESC>:w <CR> :FloatermNew c++  -o %:p:r %:p && time %:p:r && bash ~/ins.sh<CR>
+inoremap <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && bash ~/ins.sh<CR>
+nnoremap <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && bash ~/ins.sh<CR>
 
 inoremap <A-Up> <C-w>ki
 nnoremap <A-Up> <C-w>k<ESC>
@@ -125,3 +123,5 @@ nnoremap <C-o> <ESC>:open
 
 inoremap <C-k><C-t> <ESC>:colorscheme 
 nnoremap <C-k><C-t> <ESC>:colorscheme 
+
+
