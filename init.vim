@@ -34,8 +34,8 @@ call plug#begin()
 Plug 'voldikss/vim-floaterm'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'RRethy/base16-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'RRethy/base16-nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
@@ -84,13 +84,13 @@ enable = true,              -- false will disable the whole extension
 disable = {},  -- list of language that will be disabled
 },
 }
+require("nvim-treesitter.install").prefer_git = true
 EOF
 
 lua << END
 require('lualine').setup()
 END
 
-let g:airline_theme="oceanicnext"
 " .vimrc
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
@@ -106,6 +106,7 @@ return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 colorscheme base16-gruvbox-dark-medium
 
+
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 "complete
@@ -114,17 +115,17 @@ nnoremap <F9> <ESC>:w <CR> :FloatermNew c++  -o %:p:r %:p && time %:p:r && bash 
 inoremap <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && bash ~/ins.sh<CR>
 nnoremap <F5> <ESC>:w <CR> :FloatermNew time pypy3 %:p && bash ~/ins.sh<CR>
 
-inoremap <A-Up> <C-w>ki
-nnoremap <A-Up> <C-w>k<ESC>
+inoremap <C-Up> <C-w>ki
+nnoremap <C-Up> <C-w>k<ESC>
 
-inoremap <A-Left> <C-w>hi
-nnoremap <A-Left> <C-w>h<ESC>
+inoremap <C-Left> <C-w>hi
+nnoremap <C-Left> <C-w>h<ESC>
 
-inoremap <A-Right> <C-w>li
-nnoremap <A-Right> <C-w>l<ESC>
+inoremap <C-Right> <C-w>li
+nnoremap <C-Right> <C-w>l<ESC>
 
-inoremap <A-Down> <C-w>ji
-nnoremap <A-Down> <C-w>j<ESC>
+inoremap <C-Down> <C-w>ji
+nnoremap <C-Down> <C-w>j<ESC>
 
 inoremap <C-s> <ESC>:w<CR>i
 nnoremap <C-s> <ESC>:w<CR><ESC>
@@ -135,16 +136,16 @@ nnoremap <C-t> <ESC>:tabnew<CR><ESC>
 inoremap <C-w> <ESC>:tabclose<CR>i
 nnoremap <C-w> <ESC>:tabclose<CR><ESC>
 
-inoremap <C-Left> <ESC>:tabprevious<CR>i
-nnoremap <C-Left> <ESC>:tabprevious<CR><ESC>
+inoremap <A-Left> <ESC>:tabprevious<CR>i
+nnoremap <A-Left> <ESC>:tabprevious<CR><ESC>
 
-inoremap <C-Right> <ESC>:tabnext<CR>i
-nnoremap <C-Right> <ESC>:tabnext<CR><ESC>
+inoremap <A-Right> <ESC>:tabnext<CR>i
+nnoremap <A-Right> <ESC>:tabnext<CR><ESC>
 
 inoremap <C-a> <ESC>ggvG
 
-inoremap <F8> <ESC>:w <bar> :CocDiagnostics<CR>
-nnoremap <F8> <ESC>:w <bar> :CocDiagnostics<CR>
+inoremap <F8> <ESC>:w <bar> :CocDiagnostics<CR><C-Up>
+nnoremap <F8> <ESC>:w <bar> :CocDiagnostics<CR><C-Up>
 
 inoremap <C-o> <ESC>:open
 nnoremap <C-o> <ESC>:open
